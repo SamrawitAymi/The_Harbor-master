@@ -31,14 +31,18 @@ namespace The_Harbor
                 Console.Clear();
                 Console.WriteLine($"\tDag: {_dayCounter}\n");
                 Console.WriteLine("\tHamnplats\t\tBåttyp\t\tBåt-ID\t\tDagar kvar till avfärd\n");
-        
+     
                 for (int i = 0; i < _harbor.BoatsInHarbor.Count; i++)
                 {
                     var boat = _harbor.BoatsInHarbor[i];
                     if (_harbor.BoatsInHarbor[i].NoOfDaysTheBoatHasLeftInHarbor > 0)
+                    {
                         Console.WriteLine($"\t{i + 1}\t\t\t{boat.BoatType}\t{boat.ID}\t\t\t{boat.NoOfDaysTheBoatHasLeftInHarbor}");
+                        Console.WriteLine($"{BoatCreator.CreateRowingBoat()}");
+                    }
                     else
                         Console.WriteLine($"\t{i + 1}");
+                    
                 }
 
                 var boatsDismissed = _boatsInLine.Count();

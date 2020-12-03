@@ -8,7 +8,7 @@ namespace The_Harbor
 {
    public class BoatCreator
     {
-       
+
         private static readonly Random _random = new Random();
         internal Queue<BoatBase> CreateBoats(int noOfBoatsToCreate)
         {
@@ -17,7 +17,7 @@ namespace The_Harbor
             for (int i = 0; i < noOfBoatsToCreate; i++)
             {
               
-                int randomNumber = _random.Next(1, 4);
+                int randomNumber = _random.Next(1, 5);
 
 
                 if (randomNumber == 1)
@@ -35,7 +35,16 @@ namespace The_Harbor
                     var cargoShip = CreateShip();
                     Boats.Enqueue(cargoShip);
                 }
-           
+                else if (randomNumber == 4)
+                {
+                    var rowingBoat = CreateRowingBoat();
+                    Boats.Enqueue(rowingBoat);
+                    if (rowingBoat.SpaceTakenInHarbor == 0.5)
+                    {
+                        Boats.Enqueue(rowingBoat);
+                    }
+                }
+
             }
 
             return Boats;
@@ -91,6 +100,23 @@ namespace The_Harbor
             };
 
             return cargoShip;
+        }
+
+        public static RowingBoat CreateRowingBoat()
+        {
+
+            RowingBoat rowingBoat = new RowingBoat
+            {
+                ID = "R-" + GenerateThreeRandomLetters(),
+                BoatType = "Roddbåt",
+                Weight = _random.Next(100, 300),
+                TopSpeed = _random.Next(0, 3),
+                NoOfDaysTheBoatHasLeftInHarbor = 1,
+                SpaceTakenInHarbor = 0.5,
+                SuperFeature = $"Max antal passagerare: {_random.Next(0, 6)}"
+            };
+
+            return rowingBoat;
         }
 
         public static string GenerateThreeRandomLetters()
