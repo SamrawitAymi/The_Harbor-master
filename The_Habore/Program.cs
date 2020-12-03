@@ -34,11 +34,16 @@ namespace The_Harbor
      
                 for (int i = 0; i < _harbor.BoatsInHarbor.Count; i++)
                 {
+                    var boatCreate = BoatCreator.CreateRowingBoat();
                     var boat = _harbor.BoatsInHarbor[i];
                     if (_harbor.BoatsInHarbor[i].NoOfDaysTheBoatHasLeftInHarbor > 0)
+
                     {
+                        if (boatCreate.SpaceTakenInHarbor == 0.5)
+                        {
+                            Console.WriteLine($"\t{i + 1}\t\t\t{boat.BoatType}\t{boat.ID} {boat.ID}\t\t\t{boat.NoOfDaysTheBoatHasLeftInHarbor}");
+                        }
                         Console.WriteLine($"\t{i + 1}\t\t\t{boat.BoatType}\t{boat.ID}\t\t\t{boat.NoOfDaysTheBoatHasLeftInHarbor}");
-                        Console.WriteLine($"{BoatCreator.CreateRowingBoat()}");
                     }
                     else
                         Console.WriteLine($"\t{i + 1}");
